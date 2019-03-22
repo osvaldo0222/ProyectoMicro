@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tabla de usuarios con AJAX</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet"> 
+	<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+	<div class="contenedor">
+		<header>
+			<h1>Tabla de Usuarios</h1>
+			<div>
+				<button id="btn_cargar_usuarios" class="btn active">Cargar Usuarios</button>
+			</div>
+		</header>
+		<main>
+			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" id="formulario" class="formulario">
+				<input type="text" name="Matricula" id="Matricula" placeholder="Matricula">
+				<input type="text" name="Nombre" id="Nombre" placeholder="Nombre Estudiante">
+				<input type="text" name="Facultad" id="Facultad" placeholder="Facultad">
+				<input type="email" name="Status" id="Status" placeholder="Status">
+				<button type="submit" class="btn">Agregar</button>
+			</form>
+			<div class="error_box" id="error_box">
+				<p>Se ha producido un error.</p>
+			</div>
+			<table id="tabla" class="tabla">
+				<tr>
+					<th>Matricula:</th>
+					<th>Nombre Estudiante</th>
+					<th>Facultad</th>
+					<th>Status</th>
+					
+				</tr>
+			</table>
+			<div class="loader" id="loader"></div>
+		</main>
+	</div>
+	<script src="js/main.js"></script>
+</body>
+</html>
