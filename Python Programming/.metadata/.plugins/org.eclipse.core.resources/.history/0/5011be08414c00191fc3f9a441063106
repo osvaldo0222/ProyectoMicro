@@ -1,0 +1,14 @@
+import datetime
+from logical.Control import Control
+from logical.Grupo import Grupo
+
+control = Control()
+grupo_actual = None
+code = ""
+
+while code != "exit()":
+    for grupos in control.get_grupos():
+        print(grupos.get_clave())
+    
+    code = input()
+    

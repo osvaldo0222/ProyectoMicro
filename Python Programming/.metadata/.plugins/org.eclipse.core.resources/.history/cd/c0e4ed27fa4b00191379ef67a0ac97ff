@@ -1,0 +1,18 @@
+class Person:
+    def __init__(self, name, job, pay):
+        self.name = name
+        self.job = job
+        self.pay = pay
+        
+    def hola(self):
+        print(self.name)
+
+
+
+#osvaldo = Person("Osvaldo", "Programador", 1000) #Instancia de un objeto Person
+#armando = Person("Armando", "Telematico", 1000)
+#my_list = [osvaldo, armando]
+#my_list.append(osvaldo) #Agregar un elemento al final de la lista
+#my_list.insert(index, object) #Agrega un elemento en un index especifico
+#my_list.remove(0) #Elimina el elemento que esta en ese index 
+#my_list.sort(key=None, reverse=False) #Ordena la lista

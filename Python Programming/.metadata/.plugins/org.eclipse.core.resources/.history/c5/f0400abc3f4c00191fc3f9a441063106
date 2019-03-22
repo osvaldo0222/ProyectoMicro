@@ -1,0 +1,8 @@
+import datetime
+from logical.Control import Control
+from logical.Grupo import Grupo
+
+control = None
+grupo_actual = None
+
+

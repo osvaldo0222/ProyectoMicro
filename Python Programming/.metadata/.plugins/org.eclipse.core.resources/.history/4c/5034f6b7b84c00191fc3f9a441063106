@@ -1,0 +1,22 @@
+import datetime
+import threading
+from logical.Control import Control
+from logical.Grupo import Grupo
+
+code = "" 
+control = Control()
+grupo_actual = None
+
+def getDate():
+    return datetime.datetime.strptime(str(datetime.datetime.now()), '%Y-%m-%d %H:%M:%S.%f')
+
+threads = list()
+while code != "exit()":
+    now = getDate()
+    if grupo_actual == None:
+        grupo_actual = control.getGrupoActual(now)
+    code = input()
+    if grupo_actual != None:
+        index = grupo_actual.estudianteByMatricula(code)
+        if index != -1:
+            print(grupo_actual.get_estudiantes()[index].get_nombre())  

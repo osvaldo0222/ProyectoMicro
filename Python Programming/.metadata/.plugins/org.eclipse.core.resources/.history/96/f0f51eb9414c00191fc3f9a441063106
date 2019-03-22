@@ -1,0 +1,21 @@
+import datetime
+from logical.Control import Control
+from logical.Grupo import Grupo
+
+control = Control()
+grupo_actual = None
+code = ""
+
+while code != "exit()":
+    now = datetime.datetime.now()
+    if grupo_actual == None:
+        for grupo in control.get_grupos():
+            if grupo.get_hora_inicio() >= now.hour and grupo.get_hora_fin() <= now.hour:
+                grupo_actual = grupo
+                break
+    code = input()
+    if grupo_actual.estudianteByMatricula(code):
+        print()
+    
+    
+    

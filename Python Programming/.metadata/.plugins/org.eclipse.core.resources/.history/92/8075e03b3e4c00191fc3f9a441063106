@@ -1,0 +1,67 @@
+'''
+Created on Mar 21, 2019
+
+@author: 20161229
+'''
+import datetime
+import psycopg2
+from logical.Grupo import Grupo
+from logical.Estudiante import Estudiante
+from pip._internal.utils.outdated import SELFCHECK_DATE_FMT
+
+class Control(object):
+    __conn = None
+    __AulaDevice = "A3-37"
+    
+    def __init__(self):
+        self.__fecha_actual = datetime.datetime.now()
+        self.__grupos = self.__getGruposDia(self.__fecha_actual)
+
+        
+    def __getGruposDia(self, day):
+        if self.__connectPostgres():
+            cur = self.__conn.cursor()
+            day = self.__getDayByDate(day)
+            query = 'select dbo."Grupos".id_grupo, dbo."Grupos".clave, dbo."Profesores".nombre, dbo."Materias".nombre, dbo."HorariosGrupos".hora_inicio, dbo."HorariosGrupos".hora_fin, CONCAT(dbo."Edificios".clave,\'-\',dbo."Aulas".aula), dbo."Grupos".id_prof from dbo."Grupos", dbo."Profesores", dbo."Materias", dbo."HorariosGrupos", dbo."Edificios", dbo."Aulas" where dbo."Grupos".id_grupo = dbo."HorariosGrupos".id_grupo and dbo."Materias".id_mat = dbo."Grupos".id_mat and dbo."Grupos".id_prof = dbo."Profesores".id_prof and dbo."Grupos".id_aula = dbo."Aulas".id_aula and dbo."Aulas".id_edf = dbo."Edificios".id_edf and dbo."HorariosGrupos".id_dia = {} and CONCAT(dbo."Edificios".clave,\'-\',dbo."Aulas".aula) = \'{}\''.format(day, self.__AulaDevice)
+            cur.execute(query)
+            grupos = []
+            for fila in cur:
+                curEst = self.__conn.cursor()
+                aux = Grupo(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5], fila[6], fila[7])
+                queryEst = 'select dbo."Estudiantes".* from dbo."GruposEst", dbo."Estudiantes" where dbo."GruposEst".id_grupo = {} and dbo."GruposEst".matricula = dbo."Estudiantes".matricula'.format(aux.get_id_grupo())
+                curEst.execute(queryEst)
+                est = []
+                for estudiantes in curEst:
+                    auxEst = Estudiante(estudiantes[0], estudiantes[1], estudiantes[2], estudiantes[3], estudiantes[4], estudiantes[5])
+                    est.append(auxEst)
+                curEst.close()
+                aux.set_estudiantes(est)
+                grupos.append(aux)
+            cur.close()
+            self.__conn.close()
+            self.__conn = None
+            return grupos
+ 
+    def  __connectPostgres(self):
+        host = "localhost"
+        port = "5433"
+        database = "Micro"
+        user = "postgres"
+        password = "postgres"
+        try:
+            self.__conn = psycopg2.connect("host = {} port = {} user = {} password = {} dbname = {}".format(host, port, user, password, database))
+        except:
+            print("No se pudo conectar")
+            return False
+        
+        if self.__conn:
+            return True
+        
+    def __getDayByDate(self, day):
+        dia = day.day
+        year = day.year
+        mes = day.month
+        a = (14 - mes) // 12
+        m = mes + 12 * a - 2
+        d = (dia + year + (year//4) - (year//100) + (year//400) + ((31 * m)//12)) % 7
+        return (d + 1)

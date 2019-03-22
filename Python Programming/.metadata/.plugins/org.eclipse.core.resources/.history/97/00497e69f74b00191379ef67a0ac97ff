@@ -1,0 +1,16 @@
+class Person:
+    def __init__(self, name, job, pay):
+        self.name = name
+        self.job = job
+        self.pay = pay
+        
+    def hola(self):
+        print(self.name)
+    
+    def hola(self, a):
+        print(self.job)
+
+bob = Person("Osvaldo", "Programador", 1000)
+
+print(bob.name + " " + bob.job + " " + str(bob.pay))
+bob.hola()

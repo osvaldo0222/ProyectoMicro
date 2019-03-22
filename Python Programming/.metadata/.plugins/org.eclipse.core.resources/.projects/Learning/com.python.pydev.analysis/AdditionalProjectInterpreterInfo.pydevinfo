@@ -1,0 +1,30 @@
+-- VERSION_5
+-- START DISKCACHE_2
+C:\Users\20161229\Dropbox\PUCMM-ITT\8- Octavo Ciclo\MICROCONTROLADORES\PRACTICA\Python Programming\.metadata\.plugins\org.eclipse.core.resources\.projects\Learning\com.python.pydev.analysis\v2_indexcache
+logical.__init__|1553191701698821000|C:\Users\20161229\Dropbox\PUCMM-ITT\8- Octavo Ciclo\MICROCONTROLADORES\PRACTICA\Python Programming\Learning\src\logical\__init__.py
+-- END DISKCACHE
+-- START DICTIONARY
+7
+2=logical.__init__
+4=Person.__init__
+7=Person.set_pay
+5=Person.set_job
+6=Person.set_name
+1=C:\Users\20161229\Dropbox\PUCMM-ITT\8- Octavo Ciclo\MICROCONTROLADORES\PRACTICA\Python Programming\Learning\src\logical\__init__.py
+3=Person
+-- END DICTIONARY
+-- START TREE 1
+2
+osv|1|osvaldo!1^44#1*19@
+per|1|Person!1^3#7*17@
+-- END TREE
+-- START TREE 2
+7
+__i|1|__init__!3&1^4#9*18@
+__j|2|__job!4&1^6#9*19@__job!5&1^26#9*19@
+__n|2|__name!4&1^5#9*19@__name!6&1^22#9*19@
+__p|2|__pay!4&1^7#9*19@__pay!7&1^30#9*19@
+del|3|del_job!3&1^37#9*18@del_name!3&1^33#9*18@del_pay!3&1^41#9*18@
+get|3|get_job!3&1^13#9*18@get_pay!3&1^17#9*18@get_name!3&1^9#9*18@
+set|3|set_name!3&1^21#9*18@set_pay!3&1^29#9*18@set_job!3&1^25#9*18@
+-- END TREE

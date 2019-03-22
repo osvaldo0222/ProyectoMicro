@@ -1,0 +1,32 @@
+'''
+Created on Mar 20, 2019
+
+@author: 20161229
+'''
+import psycopg2
+
+host = "localhost"
+database = "Micro"
+user = "postgres"
+password = "24221831NOOF"
+
+conn = None
+matricula = ""
+
+try:
+    conn = psycopg2.connect('host = localhost port = 5433 user = postgres password = postgres dbname = Micro')
+except:
+    print("No se pudo conectar")
+
+while matricula == "":
+    matricula = input()
+    if matricula != "":
+        cur = conn.cursor()
+        sql = 'select matricula, nombre, dbo."Carreras".carrera  from dbo."Estudiantes", dbo."Carreras" where matricula = '+ matricula +' and dbo."Estudiantes".id_carrera = dbo."Carreras".id_carrera'
+        cur.execute(sql)
+        for record in cur:
+            print (record)
+        cur.close()
+        matricula = ""
+
+conn.close()
