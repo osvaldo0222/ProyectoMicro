@@ -1,0 +1,5 @@
+from logical.Control import Control
+
+
+control = Control()
+

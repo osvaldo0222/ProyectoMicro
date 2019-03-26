@@ -1,0 +1,12 @@
+'''
+Created on Mar 21, 2019
+
+@author: 20161229
+'''
+import datetime
+
+
+class Control(object):
+    def __init__(self):
+        self.__fecha_actual = datetime.datetime.now()
+        

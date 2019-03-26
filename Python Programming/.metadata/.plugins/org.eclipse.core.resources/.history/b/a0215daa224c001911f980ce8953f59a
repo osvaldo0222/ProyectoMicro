@@ -1,0 +1,30 @@
+'''
+Created on Mar 21, 2019
+
+@author: 20161229
+'''
+import datetime
+import psycopg2
+
+class Control(object):
+    __conn = None
+    
+    def __init__(self):
+        self.__fecha_actual = datetime.datetime.now()
+        
+      
+    def  connectPostgres(self):
+        host = "localhost"
+        port = "5433"
+        database = "Micro"
+        user = "postgres"
+        password = "postgres"
+        try:
+            self.__conn = psycopg2.connect("host = {} port = {} user = {} password = {} dbname = {}".format(host, port, user, password, database))
+        except:
+            print("No se pudo conectar")
+            return False
+        
+        if self.__conn:
+            return True
+         

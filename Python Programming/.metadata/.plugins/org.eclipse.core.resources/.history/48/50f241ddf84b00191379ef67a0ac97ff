@@ -1,0 +1,15 @@
+class Person:
+    def __init__(self, name, job, pay):
+        self.name = name
+        self.job = job
+        self.pay = pay
+        
+    def hola(self):
+        print(self.name)
+
+osvaldo = Person("Osvaldo", "Programador", 1000)
+armando = Person("Armando", "Telematico", 1000)
+
+my_list = [osvaldo, armando]
+
+print(my_list[1])

@@ -1,0 +1,10 @@
+'''
+Created on Mar 21, 2019
+
+@author: 20161229
+'''
+
+class Grupo(object):
+    def __init__(self, id_grupo, clave, profesor, materia, hora_inicio, hora_fin, aula, llego_prof, id_prof):
+        
+        
